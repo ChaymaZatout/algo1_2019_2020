@@ -9,7 +9,7 @@ int main()
 
     // Lecture de la taille du tableau:
     do{
-        printf("Donner la taille du tablelau (0 < taille < %d): ", TAILLE+1);
+        printf("Donner la taille du tablelau (0 < taille < %d): ", TAILLE);
         scanf("%d", &n);
     }while(n<1 || n> TAILLE);
 
