@@ -1,56 +1,58 @@
 #include <stdio.h>
-int main() {
-    int n=-1,i,tmp,index_debut,index_fin,index_debut_max=-1,index_fin_max,max_suite_nuls=-1,suite_nuls ;
-    // lecture de la taille du tableau U 
-    printf("Donnez la taille du tableau T[N] avec (0<N<200)\n");
+#include <stdlib.h>
+
+int main()
+{
+    int u[200], n,i, debut, fin, longueur_max=0;
+    // lecture de la taille du tableau U
+    printf("Donnez la taille du tableau T[N] avec (0<N<200):\n");
     do{
-        printf("N=");
-        scanf("%i",&n);
+        printf("N = ");
+        scanf("%d",&n);
         if(n<=0 || n >=200){
-            printf("N doit verifier la conditon(0<N<200)\n");
+            printf("N doit verifier la conditon(0<N<200).\n");
         }
     }while(n<=0 || n >=200);
-    int u[n];
-    //lecture des element du tableau U
-    printf("Remplisez le Tableu U\n");
-    for(i=0;i<n;i++){  
-        do{
-            printf("U[%i]=",i);
-            scanf("%i",&tmp);  
 
-        }while(tmp!=0 && tmp!=1 );
-        u[i]=tmp;
+    //lecture des elements du tableau U:
+    printf("Remplissage du Tableu U:\n");
+    for(i=0;i<n;i++){
+        do{
+            printf("U[%d]=",i);
+            scanf("%d",&u[i]);
+
+        }while(u[i]!=0 && u[i]!=1 );
     }
-    // la recherche de la plus grande suite  des elements nuls
+
+    //affichage du tableau:
+    printf("U:\n");
+    for(i=0; i<n; i++){
+        printf("%d | ", u[i]);
+
+    }
+
+    //plus grande sequence:
     i=0;
-    while(i<=n){
-        if((i<n && u[i]==1) || i==n){
-            if(i>0 && u[i-1]==0){
-                index_fin=i-1;
-                suite_nuls = index_fin-index_debut;
-                if(suite_nuls > max_suite_nuls){
-                    index_debut_max = index_debut;
-                    index_fin_max = index_fin;
-                    max_suite_nuls = suite_nuls;
-                }
+    while(i<n){
+        if(u[i]==0){
+            debut=i;
+            while(i<n && u[i]==0){
+                i++;
             }
-        }else{
-            if(i==0 || i>0 && u[i-1]==1){
-                index_debut=i;
+            if(longueur_max < i-debut+1){
+                fin=i;
+                longueur_max=i-debut+1;
             }
         }
         i++;
     }
-        
-    // affichage du résultat 
-    if(index_debut_max==-1){
-        printf("Pas de sequence nul\n");
-    }else{
-        printf("Debut = %i\n",index_debut_max);
-        printf("Fin = %i\n",index_fin_max);
-    }
-    
-   return 0;
-}
 
+    if(longueur_max==0){
+        printf("\nPas de séquence nulle.");
+    }
+    else{
+        printf("\nDébut de la blus grande séquence nulle: %d\nFin: %d", fin-longueur_max+1, fin-1);
+    }
+    return 0;
+}
 
