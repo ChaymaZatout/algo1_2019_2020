@@ -11,7 +11,7 @@ int main()
     do{
         printf("Donner la plus grande valeur du tableau (0 < max < %d): ", TAILLE);
         scanf("%d", &max);
-    }while(max<1 || max>=TAILLE);
+    }while(max<1 || max>TAILLE);
 
     // Lecture de la valeul maximale du tableau:
     do{
